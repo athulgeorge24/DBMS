@@ -1,0 +1,47 @@
+create table student1 (
+    ROLL_NO INT PRIMARY KEY,
+    NAME VARCHAR(20),
+    PHYSICS INT,
+    CHEMISTRY INT,
+    MATHS INT
+);
+Select * FROM student1;
+
+insert into student1 values(1,'Arun',15,10,40);
+insert into student1 values(2,'Deepak',8,12,48);
+insert into student1 values(3,'Chitra',22,19,11);
+insert into student1 values(4,'Amber',16,18,48);
+insert into student1 values(5,'Elon',10,13,25);
+insert into student1 values(6,'Eva',15,17,32);
+insert into student1 values(7,'Grace',19,21,45);
+insert into student1 values(8,'Geeta',10,8,20);
+insert into student1 values(9,'Rahul',22,24,48);
+insert into student1 values(10,'Meena',5,10,15);
+
+Drop table student1;
+SELECT AVG(PHYSICS) AS avg_physics FROM student1;
+
+SELECT MAX(MATHS) AS highest_marks_maths FROM student1;
+
+SELECT MIN (CHEMISTRY) AS lowest_mark_chemistry FROM student1;
+
+SELECT COUNT(*) AS pass_physics FROM student1 WHERE physics >= 12;
+SELECT ROLL_NO,NAME FROM student1 WHERE PHYSICS >= 12 AND CHEMISTRY >= 12 AND MATHS >=25;
+
+ALTER table student1 add(status VARCHAR(10));
+update student1 set status='PASS' WHERE PHYSICS >= 12 AND CHEMISTRY >= 12 AND MATHS >=25;
+update student1 set status='FAIL' WHERE PHYSICS < 12 OR CHEMISTRY < 12 OR MATHS < 25;
+
+SELECT ROLL_NO,NAME,PHYSICS+CHEMISTRY+MATHS AS TOTAL_MARKS FROM student1 ORDER BY TOTAL_MARKS DESC;
+
+ALTER table student1 add(TOTAL_MARKS INT);
+
+update student1 set total_marks=PHYSICS+CHEMISTRY+MATHS;
+
+select count(*)*100/10 as pass_percentage_maths from student1 where maths >=25;
+
+select count(*)*100/10 as pass_percentage from student1 where PHYSICS >= 12 AND CHEMISTRY >= 12 AND MATHS >=25;
+
+SELECT AVG(PHYSICS+MATHS++CHEMISTRY) AS CLASS_AVG FROM student1;
+
+select count(*) AS PASS_STUDENTS from student1 where STATUS ='PASS';
